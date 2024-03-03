@@ -4,7 +4,7 @@
     The SMOG index was used to quantify the readability of the text.  It represents the grade level at which the reader
     must be to understand the text.  A SMOG score of 12 would indicate that the reader requires a grade 12 education to
     understand the text and a score higher than that indicates a more complex read and further education neccessary
-    to understand the text.
+    to understand the text. 
     
     The score ranges from 3 to 20. (higher = better)
 """
