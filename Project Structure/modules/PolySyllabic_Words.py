@@ -4,8 +4,19 @@ import pyphen
 
 nltk.download('punkt')
 
+from modules.metadata import metadata
 
-def extract_polysyllabic_words(self,smart_doc, numsyllables=2):
+
+# Define the input and output types for the tokenizer function
+class Input(TypedDict):
+    metadata: dict[str, str]
+
+
+class Output(TypedDict):
+    metadata: dict[str, str]
+    tokens: list[str]
+
+def extract_polysyllabic_words(input: Input) -> Output: #(self,smart_doc, numsyllables=2):
 
     """
     Polysyllabic words are simply words with multiple syllables.  Words with a higher number of syllables can contribute
@@ -13,9 +24,15 @@ def extract_polysyllabic_words(self,smart_doc, numsyllables=2):
 
     To filter the words on the number of syllables they contain, simply change the numsyllables parameter
     e.g. numsyllables=4.
+
+    Args:
+        doc (doc.Doc): The document to count syllables 
+
+    Returns:
+        dict: A dictionary of words and their frequencies
     """
 # Ensure the document is a valid string
-    document = smart_doc.get_text()
+    document = input["metadata"]["text"]
     if not isinstance(document, str):
         raise ValueError(f"Expected a string document, but got: {type(document)}")
 
@@ -49,7 +66,11 @@ def extract_polysyllabic_words(self,smart_doc, numsyllables=2):
     # for word, syllables_count in polysyllabic_words:
     #     print(f'{word}: {syllables_count}')
 
-    return polysyllabic_list
+    return {"metadata": input["metadata"], "polysyllabic_list": polysyllabic_list}
+
+
+if __name__ == "__main__":
+    print(extract_polysyllabic_words(metadata({"doc": "file.docx"})))
 
   
 
