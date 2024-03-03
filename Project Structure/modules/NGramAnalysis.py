@@ -1,5 +1,4 @@
 from nltk.util import ngrams
-from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from collections import Counter
 import nltk
@@ -10,6 +9,7 @@ import re
 from typing import TypedDict
 
 from modules.metadata import metadata
+from modules.tokenizer import tokenizer
 
 class Input(TypedDict):
     metadata: dict[str, str]
