@@ -106,3 +106,4 @@ doc5.core_properties.subject = ""
 doc5.core_properties.title = ""
 doc5.core_properties.version = ""
 doc5.save('test_document5.docx')
+#end of documents to be tested, case 6 is for null values
