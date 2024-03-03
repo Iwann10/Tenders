@@ -48,7 +48,7 @@ def readability(input: Input) -> Output:
 
 if __name__ == "__main__":
     # Example usage
-    sample_metadata = {"text": "This is a sample text for testing the SMOG index calculation."}
+    sample_metadata = metadata({"doc": "file.docx"})
     sample_input = {"metadata": sample_metadata}
     result = readability(sample_input)
     print(result)
