@@ -13,4 +13,4 @@ from .PolySyllabic_Words import polysyllabic_words
 from .Readability import readability
 from .Sentiment_Analysis import sentiment_analysis
 
-from your_package import ngram_analysis, polysyllabic_words, readability, sentiment_analysis
+from modules import ngram_analysis, polysyllabic_words, readability, sentiment_analysis
