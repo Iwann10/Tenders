@@ -1,5 +1,3 @@
-# __init__.py
-
 # You can add initialization code here if needed
 # This file is required to treat the directory as a Python package
 # It can be left empty if no initialization is needed
