@@ -35,7 +35,7 @@ def ngram_analysis(input: Input) -> Output: #(self,smart_doc, n=2):
         tokens (list[str]): The list of tokens
 
     Returns:
-        sets of words in n=__ co-occurences
+        dict: sets of words in n=__ co-occurences
     """
 
 
