@@ -18,6 +18,7 @@ class Input(TypedDict):
 
 class Output(TypedDict):
     metadata: dict[str, str]
+    tokens: list[str]
     top_ngrams: list[str]
 
 
@@ -69,7 +70,11 @@ def ngram_analysis(input: Input) -> Output: #(self,smart_doc, n=2):
     # Get the top 50 n-grams in descending order
     top_ngrams = ngram_counts.most_common(50)
 
-    return top_ngrams
+    return {
+        "metadata": input["metadata"],
+        "tokens": input["tokens"],
+        "top_ngrams": top_ngrams,
+    }
 
 
 

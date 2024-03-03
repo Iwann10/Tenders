@@ -23,12 +23,12 @@ class Input(TypedDict):
 
 class Output(TypedDict):
     metadata: dict[str, str]
-    tokens: list[str]
+    smog_index: list[str]
 # import necessary modules
 
 
 
-def calculate_smog_index(input: Input) -> Output: #(self, smart_doc):
+def readability(input: Input) -> Output: #(self, smart_doc):
 
     """
     The SMOG index, also known as Simple Measure of Gobbledygook, is a readability formula that estimates the reading
@@ -45,8 +45,8 @@ def calculate_smog_index(input: Input) -> Output: #(self, smart_doc):
 
     # split the document into sentences
     document = input["metadata"]["text"]
-    if not isinstance(document, str):
-        raise ValueError(f"Expected a string document, but got: {type(document)}")
+    #if not isinstance(document, str):
+     #   raise ValueError(f"Expected a string document, but got: {type(document)}")
 
     # Split the document into sentences
     try:
@@ -74,4 +74,4 @@ def calculate_smog_index(input: Input) -> Output: #(self, smart_doc):
     return {"metadata": input["metadata"], "smog_index": smog_index}
 
     if __name__ == "__main__":
-        print(calculate_smog_index(metadata({"doc": "file.docx"})))
+        print(readability(metadata({"doc": "file.docx"})))
