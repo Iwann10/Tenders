@@ -2,7 +2,6 @@ import nltk
 from nltk.sentiment import SentimentIntensityAnalyzer
 nltk.download('vader_lexicon')
 
-import re
 from typing import TypedDict
 
 from modules.metadata import metadata
@@ -13,38 +12,26 @@ class Input(TypedDict):
 
 class Output(TypedDict):
     metadata: dict[str, str]
-    sentiment_scores: list[str]
+    sentiment_scores: dict[str, float]
 
-
-def sentiment_analysis(input: Input) -> Output: #(self, smart_doc):
-
+def sentiment_analysis(input: Input) -> Output:
     """
-    Positivity Score: The positivity score represents the extent to which the text or document expresses positive
-    sentiment. It indicates the presence and intensity of positive emotions, attitudes, or opinions conveyed in the
-    text. A higher positivity score suggests a more positive sentiment associated with the text.
+    Perform sentiment analysis on the given text and return sentiment scores.
 
-    Negativity Score: The negativity score indicates the degree of negative sentiment expressed in the text.
-    It represents the presence and intensity of negative emotions, attitudes, or opinions conveyed in the text.
-    A higher negativity score suggests a more negative sentiment associated with the text.
+    Positivity Score: Represents the extent of positive sentiment expressed in the text.
+    Negativity Score: Represents the extent of negative sentiment expressed in the text.
+    Neutral Score: Represents the extent of neutral sentiment expressed in the text.
 
-    Neutral Score: The neutral score represents the extent to which the text or document lacks any strong positive or
-    negative sentiment. It indicates the presence of statements or content that are considered neutral, factual, or
-    lacking emotional connotations. A higher neutral score suggests a more neutral or objective tone in the text.
-    
     Args:
-        doc (doc.Doc) : the document for sentiment analysis
-    
+        metadata (dict): Metadata containing the text for sentiment analysis
+
     Returns:
-        _____: the sentiment analysis score of the document
-    
+        dict: Sentiment analysis scores of the document
     """
     # Ensure the document is a valid string
-    #document = smart_doc.get_text()
-    #if not isinstance(document, str):
-    #    raise ValueError(f"Expected a string document, but got: {type(document)}")
-
-    # convert the document to a string
     text = input["metadata"]["text"]
+    if not isinstance(text, str):
+        raise ValueError(f"Expected a string document, but got: {type(text)}")
 
     # Perform sentiment analysis using NLTK
     sia = SentimentIntensityAnalyzer()
@@ -56,5 +43,9 @@ def sentiment_analysis(input: Input) -> Output: #(self, smart_doc):
 
     return {"metadata": input["metadata"], "sentiment_scores": sentiment_scores}
 
-    if __name__ == "__main__":
-        print(sentiment_analysis(metadata({"doc": "file.docx"})))
+if __name__ == "__main__":
+    # Example usage
+    sample_metadata = metadata({"doc": "file.docx"})
+    sample_input = {"metadata": sample_metadata}
+    result = readability(sample_input)
+    print(result)

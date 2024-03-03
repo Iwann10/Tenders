@@ -34,7 +34,7 @@ def ngram_analysis(input: Input) -> Output:
         n (int): The size of the n-grams to generate
 
     Returns:
-        dict: Sets of words in n=__ co-occurrences
+        Sets of words in n=__ co-occurrences
     """
 
     n = input.get("numsyllables", 2)

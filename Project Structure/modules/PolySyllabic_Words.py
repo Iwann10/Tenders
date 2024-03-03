@@ -17,7 +17,7 @@ class Input(TypedDict):
 class Output(TypedDict):
     metadata: dict[str, str]
     tokens: list[str]
-    polysyllabic_list: list[str]
+    polysyllabic_list: dict[str, str]
 
 def polysyllabic_words(input: Input) -> Output:
     """
@@ -59,6 +59,16 @@ def polysyllabic_words(input: Input) -> Output:
 
     # Sort the list in descending order based on the number of syllables
     polysyllabic_list.sort(key=lambda x: x[1], reverse=True)
+
+
+
+    #################################################################################################
+                                                # OPTIONAL OUTPUT
+        #################################################################################################
+
+        # Display polysyllabic words and their syllable count
+        # for word, syllables_count in polysyllabic_words:
+        #     print(f'{word}: {syllables_count}')
 
     return {"metadata": input["metadata"], "tokens": input["tokens"], "polysyllabic_list": polysyllabic_list}
 
