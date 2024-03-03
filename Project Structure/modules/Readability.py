@@ -17,7 +17,7 @@ def readability(input: Input) -> Output:
         input (dict): The input dictionary containing metadata with the text to analyze.
         
     Returns:
-        dict: The calculated SMOG index along with the original metadata.
+        The calculated SMOG index along with the original metadata.
     """
 
     # Extract text from metadata

@@ -4,17 +4,17 @@ from collections import Counter
 import nltk
 nltk.download('omw-1.4')
 
-
-import re
-from typing import TypedDict
-
 from modules.metadata import metadata
 from modules.tokenizer import tokenizer
+
+from typing import TypedDict
 
 class Input(TypedDict):
     metadata: dict[str, str]
     tokens: list[str]
-
+    #gets value for n the ngram analysis
+    #must set the value for n when wanting to use the module
+    n: int
 
 class Output(TypedDict):
     metadata: dict[str, str]
@@ -22,9 +22,7 @@ class Output(TypedDict):
     top_ngrams: list[str]
 
 
-#An n-gram is a contiguous sequence of n items, where an item can be a word, character, or even a sequence of words.
-def ngram_analysis(input: Input) -> Output: #(self,smart_doc, n=2):
-
+def ngram_analysis(input: Input) -> Output:
     """
     Search for N-grams in the text.
 
@@ -33,25 +31,19 @@ def ngram_analysis(input: Input) -> Output: #(self,smart_doc, n=2):
 
     Args:
         tokens (list[str]): The list of tokens
+        n (int): The size of the n-grams to generate
 
     Returns:
-        dict: sets of words in n=__ co-occurences
+        dict: Sets of words in n=__ co-occurrences
     """
 
+    n = input["n"]
 
-    # Ensure the document is a valid string
-    #document = smart_doc.get_text()
-    #if not isinstance(document, str):
-     #    raise ValueError(f"Expected a string document, but got: {type(document)}")
+    if not isinstance(n, int):
+        #setting default value of n sothat n is always define
+        n = 2
 
-    # Tokenize words and remove punctuation
-    #try:
-    #    words = word_tokenize(document)
-    #except Exception as e:
-     #    raise ValueError(f"Error during tokenization: {e}")
-    
     words = input["tokens"]
-    
     words = [word.lower() for word in words if word.isalpha()]
 
     # Remove stopwords
@@ -76,8 +68,8 @@ def ngram_analysis(input: Input) -> Output: #(self,smart_doc, n=2):
         "top_ngrams": top_ngrams,
     }
 
-
-
-###work on here
-    if __name__ == "__main__":
-        print(ngram_analysis(tokenizer(metadata({"doc": "file.docx"}))))
+# Testing the function
+if __name__ == "__main__":
+    sample_input = tokenizer(metadata({"doc": "file.docx"}))
+    sample_input["n"] = 2  # Set the value of 'n' for testing
+    print(ngram_analysis(sample_input))
