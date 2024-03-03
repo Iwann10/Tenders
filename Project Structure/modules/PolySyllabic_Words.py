@@ -1,48 +1,50 @@
 import nltk
 from nltk.tokenize import word_tokenize
 import pyphen
+from typing import TypedDict
 
 nltk.download('punkt')
 
 from modules.metadata import metadata
 
-
 # Define the input and output types for the tokenizer function
 class Input(TypedDict):
     metadata: dict[str, str]
+    tokens: list[str]
+    numsyllables: int  # Number of syllables to filter polysyllabic words
 
 
 class Output(TypedDict):
     metadata: dict[str, str]
     tokens: list[str]
+    polysyllabic_list: list[str]
 
-def extract_polysyllabic_words(input: Input) -> Output: #(self,smart_doc, numsyllables=2):
-
+def polysyllabic_words(input: Input) -> Output:
     """
-    Polysyllabic words are simply words with multiple syllables.  Words with a higher number of syllables can contribute
-    to the syntactic complexity as well as the lexical richness of the text.
-
-    To filter the words on the number of syllables they contain, simply change the numsyllables parameter
-    e.g. numsyllables=4.
+    Extract polysyllabic words from the text based on the given number of syllables.
 
     Args:
-        doc (doc.Doc): The document to count syllables 
+        metadata (dict): Metadata containing the text to analyze
+        tokens (list[str]): List of tokens
+        numsyllables (int): Number of syllables to filter polysyllabic words
 
     Returns:
-        dict: List of polysyllabic words with syllable count
+        dict: Polysyllabic words with their syllable count
     """
-# Ensure the document is a valid string
+
+    # Check if numsyllables is provided and is an integer, otherwise use default value
+    numsyllables = input.get("numsyllables", 2)
+    if not isinstance(numsyllables, int):
+        raise ValueError("numsyllables must be an integer.")
+
+    # Ensure the document is a valid string
     document = input["metadata"]["text"]
     if not isinstance(document, str):
         raise ValueError(f"Expected a string document, but got: {type(document)}")
 
     dic = pyphen.Pyphen(lang='en_US')
 
-    # Tokenize the document into words
-    try:
-        words = word_tokenize(document)
-    except Exception as e:
-        raise ValueError(f"Error during tokenization: {e}")
+    words = input["tokens"]
 
     # Extract polysyllabic words with syllable count
     polysyllabic_list = []
@@ -58,19 +60,10 @@ def extract_polysyllabic_words(input: Input) -> Output: #(self,smart_doc, numsyl
     # Sort the list in descending order based on the number of syllables
     polysyllabic_list.sort(key=lambda x: x[1], reverse=True)
 
-    #################################################################################################
-                                            # OPTIONAL OUTPUT
-    #################################################################################################
-
-    # Display polysyllabic words and their syllable count
-    # for word, syllables_count in polysyllabic_words:
-    #     print(f'{word}: {syllables_count}')
-
-    return {"metadata": input["metadata"], "polysyllabic_list": polysyllabic_list}
+    return {"metadata": input["metadata"], "tokens": input["tokens"], "polysyllabic_list": polysyllabic_list}
 
 
 if __name__ == "__main__":
-    print(extract_polysyllabic_words(metadata({"doc": "file.docx"})))
-
-  
-
+    sample_input = tokenizer(metadata({"doc": "file.docx"}))
+    sample_input["numsyllables"] = 2  # Set the value of 'n' for testing
+    print(polysyllabic_words(sample_input))

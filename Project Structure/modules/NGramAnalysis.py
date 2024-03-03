@@ -37,11 +37,10 @@ def ngram_analysis(input: Input) -> Output:
         dict: Sets of words in n=__ co-occurrences
     """
 
-    n = input["n"]
+    n = input.get("numsyllables", 2)
 
     if not isinstance(n, int):
-        #setting default value of n sothat n is always define
-        n = 2
+        raise ValueError("n must be an integer.")
 
     words = input["tokens"]
     words = [word.lower() for word in words if word.isalpha()]
