@@ -9,7 +9,9 @@
     The score ranges from 3 to 20. (higher = better)
 """
 import nltk
-from nltk.sentiment import SentimentIntensityAnalyzer
+import re
+import math
+from nltk.download('omw-1.4') import SentimentIntensityAnalyzer
 nltk.download('vader_lexicon')
 
 import re
