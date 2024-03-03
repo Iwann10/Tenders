@@ -29,7 +29,7 @@ def extract_polysyllabic_words(input: Input) -> Output: #(self,smart_doc, numsyl
         doc (doc.Doc): The document to count syllables 
 
     Returns:
-        dict: A dictionary of words and their frequencies
+        dict: List of polysyllabic words with syllable count
     """
 # Ensure the document is a valid string
     document = input["metadata"]["text"]
