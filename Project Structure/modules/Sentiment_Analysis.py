@@ -13,7 +13,7 @@ class Input(TypedDict):
 
 class Output(TypedDict):
     metadata: dict[str, str]
-    tokens: list[str]
+    sentiment_scores: list[str]
 
 
 def sentiment_analysis(input: Input) -> Output: #(self, smart_doc):
