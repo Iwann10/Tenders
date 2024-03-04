@@ -81,13 +81,13 @@ methods = {
 }
 
 result = methods["word count"](doc)
-#result2 = methods["ngram analysis"](doc)
+result2 = methods["ngram analysis"](doc)
 result3 = methods["polysyllabic words"](doc)
 result4 = methods["readability"](doc)
 result5 = methods["sentiment analysis"](doc)
 
-print(result , "\n\n\n\n\n\n" )
-#print(result2 , "\n\n\n\n\n\n" )
-print(result3 , "\n\n\n\n\n\n" )
-print(result4 , "\n\n\n\n\n\n" )
-print(result5 , "\n\n\n\n\n\n" )
+#print(result , "\n\n\n\n\n\n" )
+print(result2 , "\n\n\n\n\n\n" )
+#print(result3 , "\n\n\n\n\n\n" )
+#print(result4 , "\n\n\n\n\n\n" )
+#print(result5 , "\n\n\n\n\n\n" )
