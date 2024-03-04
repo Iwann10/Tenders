@@ -6,9 +6,11 @@
 # from .modules import module1, module2
 # from .tests import test_module1, test_module2
 
-from .NGramAnalysis import ngram_analysis
-from .PolySyllabic_Words import polysyllabic_words
-from .Readability import readability
-from .Sentiment_Analysis import sentiment_analysis
+from modules.NGramAnalysis import ngram_analysis
+from modules.PolySyllabic_Words import polysyllabic_words
+from modules.Readability import readability
+from modules.Sentiment_Analysis import sentiment_analysis
+from modules.metadata import metadata
+from modules.tokenizer import tokenizer
 
-from modules import ngram_analysis, polysyllabic_words, readability, sentiment_analysis
+from modules import test_NGramAnalysis, test_PolySyllabic_words, test_Readability, test_Sentiment_Analysis
