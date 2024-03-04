@@ -13,4 +13,4 @@ from modules.Sentiment_Analysis import sentiment_analysis
 from modules.metadata import metadata
 from modules.tokenizer import tokenizer
 
-from modules import test_NGramAnalysis, test_PolySyllabic_words, test_Readability, test_Sentiment_Analysis
+from tests import test_NGramAnalysis, test_PolySyllabic_Words, test_Readability, test_Sentiment_Analysis
