@@ -51,18 +51,43 @@ def registerMethod(methods):
 
 # ------------------------------------------------------------------------------------------------------------------------------------
 
+#stuff given to us
 from modules.metadata import metadata
 from modules.tokenizer import tokenizer
 from modules.word_count import word_count
+
+
+#testing new methods imports
+from modules.ngram_analysis import ngram_analysis
+from modules.polysyllabic_words import polysyllabic_words
+from modules.readability import readability
+from modules.sentiment_analysis import sentiment_analysis
 
 doc = {"doc": "file.docx"}
 
 # Use the registerMethod function to create a chain of methods
 methods = {
-    "word count": registerMethod([metadata, tokenizer, word_count])
+    "word count": registerMethod([metadata, tokenizer, word_count]),
     # other methods...
+
+    #methods we testing in the main
+    "ngram analysis": registerMethod([metadata, tokenizer, ngram_analysis]),
+
+    "polysyllabic words": registerMethod([metadata, tokenizer, polysyllabic_words]),
+
+    "readability": registerMethod([metadata, readability]),
+
+    "sentiment analysis" :registerMethod([metadata, sentiment_analysis])
 }
 
 result = methods["word count"](doc)
+#result2 = methods["ngram analysis"](doc)
+result3 = methods["polysyllabic words"](doc)
+result4 = methods["readability"](doc)
+result5 = methods["sentiment analysis"](doc)
 
-print(result)
+print(result , "\n\n\n\n\n\n" )
+#print(result2 , "\n\n\n\n\n\n" )
+print(result3 , "\n\n\n\n\n\n" )
+print(result4 , "\n\n\n\n\n\n" )
+print(result5 , "\n\n\n\n\n\n" )
