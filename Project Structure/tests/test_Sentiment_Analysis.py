@@ -1,6 +1,6 @@
 ########################################################
 import unittest
-from modules.Sentiment_Analysis import sentiment_analysis
+from modules.sentiment_analysis import sentiment_analysis
 from modules.metadata import metadata
 
 class TestSentimentAnalysis(unittest.TestCase):
