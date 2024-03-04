@@ -37,6 +37,7 @@ def ngram_analysis(input: Input) -> Output:
         Sets of words in n=__ co-occurrences
     """
 
+    #defaults to 2 when there is no value specified
     n = input.get("numsyllables", 2)
 
     if not isinstance(n, int):

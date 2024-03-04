@@ -33,6 +33,7 @@ def polysyllabic_words(input: Input) -> Output:
     """
 
     # Check if numsyllables is provided and is an integer, otherwise use default value
+    #defaults poly sylable words to 2
     numsyllables = input.get("numsyllables", 2)
     if not isinstance(numsyllables, int):
         raise ValueError("numsyllables must be an integer.")
