@@ -24,7 +24,7 @@ def word_count(input: Input) -> Output:
         tokens (list[str]): The list of tokens
 
     Returns:
-        dict: A dictionary of words and their counts
+        dict: A dictionary of words and their counts.
     """
     word_counts = {}
     for token in input["tokens"]:
