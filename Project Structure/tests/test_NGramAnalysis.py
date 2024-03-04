@@ -1,8 +1,9 @@
 ######################################
 import unittest
-from modules.ngram_analysis import ngram_analysis
-from modules.tokenizer import tokenizer
+
 from modules.metadata import metadata
+from modules.tokenizer import tokenizer
+from modules.ngram_analysis import ngram_analysis
 
 class TestNGramAnalysis(unittest.TestCase):
     def test_ngram_analysis(self):

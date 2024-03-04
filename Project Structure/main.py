@@ -80,13 +80,13 @@ methods = {
     "sentiment analysis" :registerMethod([metadata, sentiment_analysis])
 }
 
-#result = methods["word count"](doc)
+result = methods["word count"](doc)
 result2 = methods["ngram analysis"](doc)
 result3 = methods["polysyllabic words"](doc)
 result4 = methods["readability"](doc)
 result5 = methods["sentiment analysis"](doc)
 
-#print(result , "\n\n\n\n\n\n" )
+print("word count\n", result , "\n\n\n\n\n\n" )
 print("ngram analysis\n", result2 , "\n\n\n\n\n\n" )
 print("poly words\n", result3 , "\n\n\n\n\n\n" )
 print("readability\n", result4 , "\n\n\n\n\n\n" )
