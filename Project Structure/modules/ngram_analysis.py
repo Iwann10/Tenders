@@ -39,7 +39,7 @@ def ngram_analysis(input: Input) -> Output:
 
     #defaults to 2 when there is no value specified
     n = input.get("numsyllables", 2)
-
+    #error handeling if not null
     if not isinstance(n, int):
         raise ValueError("n must be an integer.")
 
