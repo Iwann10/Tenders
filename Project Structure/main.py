@@ -63,7 +63,10 @@ from modules.polysyllabic_words import polysyllabic_words
 from modules.readability import readability
 from modules.sentiment_analysis import sentiment_analysis
 
-doc = {"doc": "tests/Alice_Smith_Cat_Story.docx"}
+#files used in the tests
+#tests/Alice_Smith_Cat_Story.docx, tests/Bob_Johnson_Kitten_Story.docx, tests/Charlie_Brown_Cat.docx, tests/Jane_Doe_Cat_Story.docx, tests/test_document5.docx
+
+doc = {"doc": "tests/Jane_Doe_Cat_Story.docx"}
 
 # Use the registerMethod function to create a chain of methods
 methods = {
@@ -86,8 +89,8 @@ result3 = methods["polysyllabic words"](doc)
 result4 = methods["readability"](doc)
 result5 = methods["sentiment analysis"](doc)
 
-print("word count\n", result , "\n\n\n\n\n\n" )
+#print("word count\n", result , "\n\n\n\n\n\n" )
 print("ngram analysis\n", result2 , "\n\n\n\n\n\n" )
-print("poly words\n", result3 , "\n\n\n\n\n\n" )
-print("readability\n", result4 , "\n\n\n\n\n\n" )
-print("sentiment\n", result5 , "\n\n\n\n\n\n" )
+#print("poly words\n", result3 , "\n\n\n\n\n\n" )
+#print("readability\n", result4 , "\n\n\n\n\n\n" )
+#print("sentiment\n", result5 , "\n\n\n\n\n\n" )
