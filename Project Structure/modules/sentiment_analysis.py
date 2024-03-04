@@ -46,6 +46,5 @@ def sentiment_analysis(input: Input) -> Output:
 if __name__ == "__main__":
     # Example usage
     sample_metadata = metadata({"doc": "file.docx"})
-    sample_input = {"metadata": sample_metadata}
-    result = sentiment_analysis(sample_input)
+    result = sentiment_analysis(sample_metadata)
     print(result)

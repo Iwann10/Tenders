@@ -51,6 +51,5 @@ def readability(input: Input) -> Output:
 if __name__ == "__main__":
     # Example usage
     sample_metadata = metadata({"doc": "file.docx"})
-    sample_input = {"metadata": sample_metadata}
-    result = readability(sample_input)
+    result = readability(sample_metadata)
     print(result)
