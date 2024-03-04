@@ -1,11 +1,11 @@
 import nltk
-from nltk.tokenize import word_tokenize
 import pyphen
 from typing import TypedDict
 
 nltk.download('punkt')
 
 from modules.metadata import metadata
+from modules.tokenizer import tokenizer
 
 # Define the input and output types for the tokenizer function
 class Input(TypedDict):

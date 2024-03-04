@@ -2,6 +2,8 @@ import re
 import math
 from typing import TypedDict
 
+from modules.metadata import metadata
+
 class Input(TypedDict):
     metadata: dict[str, str]
 
