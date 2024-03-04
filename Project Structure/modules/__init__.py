@@ -4,7 +4,7 @@
 
 # Example: Importing modules from the package
 # from .modules import module1, module2
-# from .tests import test_module1, test_module2
+# from .tests import test_module1, test_module2....
 
 from modules.NGramAnalysis import ngram_analysis
 from modules.PolySyllabic_Words import polysyllabic_words
