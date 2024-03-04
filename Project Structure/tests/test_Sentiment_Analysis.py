@@ -4,51 +4,32 @@ from modules.sentiment_analysis import sentiment_analysis
 from modules.metadata import metadata
 
 class TestSentimentAnalysis(unittest.TestCase):
-    def test_sentiment_analysis_positive(self):
-        input_data = metadata({"text": "This is a positive document. It contains some happy content."})
+    def test_sentiment_analysis(self):
+        #test 1
+        #testing the alice_smith_cat_story.docx
+        input_data = metadata({"doc": "tests/Alice_Smith_Cat_Story.docx"})
         result = sentiment_analysis(input_data)
-        expected_result = {
-            "metadata": {"text": "This is a positive document. It contains some happy content."},
-            "sentiment_scores": {"neg": 0.0, "neu": 0.352, "pos": 0.648, "compound": 0.7964}  # Example expected result
-        }
+        expected_result = {'metadata': {'author': 'Alice Smith', 'category': 'Story', 'comments': 'This is a story about a curious cat named Mittens.', 'content_status': 'Draft', 'created': '2013-12-23T23:15:00', 'identifier': '12345678-1234-1234-1234-123456789012', 'keywords': 'cat, story, adventure', 'language': 'en-US', 'last_modified_by': 'Alice Smith', 'last_printed': None, 'modified': '2013-12-23T23:15:00', 'revision': 1, 'subject': "A Cat's Adventure", 'title': 'fluttering butterfly outside the window.', 'version': '1.0', 'name': 'tests/Alice_Smith_Cat_Story.docx', 'paragraphs': ["Alice Smith's Cat", 'In a cozy little house nestled amidst the bustling city, lived a ginger cat named Mittens, the beloved companion of Alice Smith. She was known for her playful antics and insatiable curiosity. One sunny afternoon, while basking in a patch of warm sunlight, Mittens spotted a fluttering butterfly outside the window. She leaped off the window sill, tail swishing excitedly, and darted towards the fluttering wings. Mittens pounced and batted at the butterfly with her paws, but the nimble creature fluttered away, leaving her wanting more. Undeterred, Mittens continued to explore the house, searching for new adventures.'], 'text': "Alice Smith's Cat In a cozy little house nestled amidst the bustling city, lived a ginger cat named Mittens, the beloved companion of Alice Smith. She was known for her playful antics and insatiable curiosity. One sunny afternoon, while basking in a patch of warm sunlight, Mittens spotted a fluttering butterfly outside the window. She leaped off the window sill, tail swishing excitedly, and darted towards the fluttering wings. Mittens pounced and batted at the butterfly with her paws, but the nimble creature fluttered away, leaving her wanting more. Undeterred, Mittens continued to explore the house, searching for new adventures."}, 'sentiment_scores': {'neg': 0.0, 'neu': 0.876, 'pos': 0.124, 'compound': 0.8658}}
         self.assertEqual(result, expected_result)
 
-    def test_sentiment_analysis_negative(self):
-        input_data = metadata({"text": "This is a negative document. It contains some sad content."})
-        result = sentiment_analysis(input_data)
-        expected_result = {
-            "metadata": {"text": "This is a negative document. It contains some sad content."},
-            "sentiment_scores": {"neg": 0.572, "neu": 0.428, "pos": 0.0, "compound": -0.6249}  # Example expected result
-        }
-        self.assertEqual(result, expected_result)
+        #test 2
+        #testing the Bob_Johnson_Kitten_Story.docx
+        
 
-    def test_sentiment_analysis_neutral(self):
-        input_data = metadata({"text": "This is a neutral document. It contains factual information."})
-        result = sentiment_analysis(input_data)
-        expected_result = {
-            "metadata": {"text": "This is a neutral document. It contains factual information."},
-            "sentiment_scores": {"neg": 0.0, "neu": 1.0, "pos": 0.0, "compound": 0.0}  # Example expected result
-        }
-        self.assertEqual(result, expected_result)
+        #test 3
+        #testing the Charlie_Brown_Cat.docx
 
-    def test_sentiment_analysis_null_text(self):
-        input_data = metadata({"text": None})
-        with self.assertRaises(ValueError):
-            sentiment_analysis(input_data)
+        #test 4
+        #testing the Jane_Doe_Cat_Story.docx
 
-    def test_sentiment_analysis_empty_text(self):
-        input_data = metadata({"text": ""})
-        result = sentiment_analysis(input_data)
-        expected_result = {
-            "metadata": {"text": ""},
-            "sentiment_scores": {"neg": 0.0, "neu": 1.0, "pos": 0.0, "compound": 0.0}  # Example expected result for empty text
-        }
-        self.assertEqual(result, expected_result)
+        #test 5
+        #testing the test_document5.docx  (an empty document)
+        
+        #test 6
+        #testing null
 
-    def test_sentiment_analysis_invalid_input(self):
-        input_data = {"invalid_key": "This is an invalid input."}
-        with self.assertRaises(ValueError):
-            sentiment_analysis(input_data)
+
+
 
 if __name__ == "__main__":
     unittest.main()

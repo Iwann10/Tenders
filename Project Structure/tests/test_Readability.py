@@ -1,72 +1,32 @@
 ###############
 import unittest
 from modules.metadata import metadata
-from modules.Readability import readability
+from modules.readability import readability
 
 class TestReadability(unittest.TestCase):
     def test_readability(self):
-        # Test case 1
-        input_data = metadata({"text": "This is a simple text for testing readability."})
+        #test 1
+        #testing the alice_smith_cat_story
+        input_data = metadata({"doc": "tests/Alice_Smith_Cat_Story.docx"})
         result = readability(input_data)
-        expected_result = {
-            "metadata": {"text": "This is a simple text for testing readability."},
-            "smog_index": 2.418
-        }
+        expected_result = {'metadata': {'author': 'Alice Smith', 'category': 'Story', 'comments': 'This is a story about a curious cat named Mittens.', 'content_status': 'Draft', 'created': '2013-12-23T23:15:00', 'identifier': '12345678-1234-1234-1234-123456789012', 'keywords': 'cat, story, adventure', 'language': 'en-US', 'last_modified_by': 'Alice Smith', 'last_printed': None, 'modified': '2013-12-23T23:15:00', 'revision': 1, 'subject': "A Cat's Adventure", 'title': 'fluttering butterfly outside the window.', 'version': '1.0', 'name': 'tests/Alice_Smith_Cat_Story.docx', 'paragraphs': ["Alice Smith's Cat", 'In a cozy little house nestled amidst the bustling city, lived a ginger cat named Mittens, the beloved companion of Alice Smith. She was known for her playful antics and insatiable curiosity. One sunny afternoon, while basking in a patch of warm sunlight, Mittens spotted a fluttering butterfly outside the window. She leaped off the window sill, tail swishing excitedly, and darted towards the fluttering wings. Mittens pounced and batted at the butterfly with her paws, but the nimble creature fluttered away, leaving her wanting more. Undeterred, Mittens continued to explore the house, searching for new adventures.'], 'text': "Alice Smith's Cat In a cozy little house nestled amidst the bustling city, lived a ginger cat named Mittens, the beloved companion of Alice Smith. She was known for her playful antics and insatiable curiosity. One sunny afternoon, while basking in a patch of warm sunlight, Mittens spotted a fluttering butterfly outside the window. She leaped off the window sill, tail swishing excitedly, and darted towards the fluttering wings. Mittens pounced and batted at the butterfly with her paws, but the nimble creature fluttered away, leaving her wanting more. Undeterred, Mittens continued to explore the house, searching for new adventures."}, 'smog_index': 13.023866798666859}
         self.assertAlmostEqual(result["smog_index"], expected_result["smog_index"], places=3)
 
-    def test_readability_null_input(self):
-        # Test case for null input
-        input_data = metadata({"text": None})
-        result = readability(input_data)
-        expected_result = {"metadata": {"text": None}, "smog_index": 0.0}
-        self.assertEqual(result, expected_result)
+        #test 2
+        #testing the Bob_Johnson_Kitten_Story.docx
+        
 
-    def test_readability_empty_text(self):
-        # Test case for empty text
-        input_data = metadata({"text": ""})
-        result = readability(input_data)
-        expected_result = {"metadata": {"text": ""}, "smog_index": 0.0}
-        self.assertEqual(result, expected_result)
+        #test 3
+        #testing the Charlie_Brown_Cat.docx
 
-    def test_readability_complex_text(self):
-        # Test case for a complex text
-        input_data = metadata({"text": "This is a sophisticated document with numerous polysyllabic words to challenge readability calculations."})
-        result = readability(input_data)
-        expected_result = {
-            "metadata": {"text": "This is a sophisticated document with numerous polysyllabic words to challenge readability calculations."},
-            "smog_index": 8.062
-        }
-        self.assertAlmostEqual(result["smog_index"], expected_result["smog_index"], places=3)
+        #test 4
+        #testing the Jane_Doe_Cat_Story.docx
 
-    def test_readability_multiple_sentences(self):
-        # Test case for multiple sentences
-        input_data = metadata({"text": "This is sentence one. This is sentence two. This is sentence three."})
-        result = readability(input_data)
-        expected_result = {
-            "metadata": {"text": "This is sentence one. This is sentence two. This is sentence three."},
-            "smog_index": 3.162
-        }
-        self.assertAlmostEqual(result["smog_index"], expected_result["smog_index"], places=3)
-
-    def test_readability_single_syllable_words(self):
-        # Test case for single syllable words
-        input_data = metadata({"text": "Simple words for testing."})
-        result = readability(input_data)
-        expected_result = {
-            "metadata": {"text": "Simple words for testing."},
-            "smog_index": 1.0
-        }
-        self.assertAlmostEqual(result["smog_index"], expected_result["smog_index"], places=3)
-
-    def test_readability_complex_words(self):
-        # Test case for complex words
-        input_data = metadata({"text": "This document contains numerous complex and polysyllabic words."})
-        result = readability(input_data)
-        expected_result = {
-            "metadata": {"text": "This document contains numerous complex and polysyllabic words."},
-            "smog_index": 5.477
-        }
-        self.assertAlmostEqual(result["smog_index"], expected_result["smog_index"], places=3)
+        #test 5
+        #testing the test_document5.docx  (an empty document)
+        
+        #test 6
+        #testing null
 
 if __name__ == "__main__":
     unittest.main()

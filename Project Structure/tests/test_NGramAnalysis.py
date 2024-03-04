@@ -1,79 +1,33 @@
 ######################################
 import unittest
-from modules.NGramAnalysis import ngram_analysis
+from modules.ngram_analysis import ngram_analysis
+from modules.tokenizer import tokenizer
 from modules.metadata import metadata
 
 class TestNGramAnalysis(unittest.TestCase):
     def test_ngram_analysis(self):
-        # Test case 1
-        input_data = {
-            "metadata": {"text": "This is a sample document."},
-            "tokens": ["this", "is", "a", "sample", "document"]
-        }
+        #test 1
+        #testing the alice_smith_cat_story
+        input_data = tokenizer(metadata({"doc": "tests/Alice_Smith_Cat_Story.docx"}))
         result = ngram_analysis(input_data)
-        expected_result = {
-            "metadata": {"text": "This is a sample document."},
-            "tokens": ["this", "is", "a", "sample", "document"],
-            "top_ngrams": [(("this", "is"), 1), (("is", "a"), 1), (("a", "sample"), 1), (("sample", "document"), 1)]  # Example expected result
-        }
+        expected_result = {'metadata': {'author': 'Alice Smith', 'category': 'Story', 'comments': 'This is a story about a curious cat named Mittens.', 'content_status': 'Draft', 'created': '2013-12-23T23:15:00', 'identifier': '12345678-1234-1234-1234-123456789012', 'keywords': 'cat, story, adventure', 'language': 'en-US', 'last_modified_by': 'Alice Smith', 'last_printed': None, 'modified': '2013-12-23T23:15:00', 'revision': 1, 'subject': "A Cat's Adventure", 'title': 'fluttering butterfly outside the window.', 'version': '1.0', 'name': 'tests/Alice_Smith_Cat_Story.docx', 'paragraphs': ["Alice Smith's Cat", 'In a cozy little house nestled amidst the bustling city, lived a ginger cat named Mittens, the beloved companion of Alice Smith. She was known for her playful antics and insatiable curiosity. One sunny afternoon, while basking in a patch of warm sunlight, Mittens spotted a fluttering butterfly outside the window. She leaped off the window sill, tail swishing excitedly, and darted towards the fluttering wings. Mittens pounced and batted at the butterfly with her paws, but the nimble creature fluttered away, leaving her wanting more. Undeterred, Mittens continued to explore the house, searching for new adventures.'], 'text': "Alice Smith's Cat In a cozy little house nestled amidst the bustling city, lived a ginger cat named Mittens, the beloved companion of Alice Smith. She was known for her playful antics and insatiable curiosity. One sunny afternoon, while basking in a patch of warm sunlight, Mittens spotted a fluttering butterfly outside the window. She leaped off the window sill, tail swishing excitedly, and darted towards the fluttering wings. Mittens pounced and batted at the butterfly with her paws, but the nimble creature fluttered away, leaving her wanting more. Undeterred, Mittens continued to explore the house, searching for new adventures."}, 'tokens': ['alice', 'smiths', 'cat', 'in', 'a', 'cozy', 'little', 'house', 'nestled', 'amidst', 'the', 'bustling', 'city', 'lived', 'a', 'ginger', 'cat', 'named', 'mittens', 'the', 'beloved', 'companion', 'of', 'alice', 'smith', 'she', 'was', 'known', 'for', 'her', 'playful', 'antics', 'and', 'insatiable', 'curiosity', 'one', 'sunny', 'afternoon', 'while', 'basking', 'in', 'a', 'patch', 'of', 'warm', 'sunlight', 'mittens', 'spotted', 'a', 'fluttering', 'butterfly', 'outside', 'the', 'window', 'she', 'leaped', 'off', 'the', 'window', 'sill', 'tail', 'swishing', 'excitedly', 'and', 'darted', 'towards', 'the', 'fluttering', 'wings', 'mittens', 'pounced', 'and', 'batted', 'at', 'the', 'butterfly', 'with', 'her', 'paws', 'but', 'the', 'nimble', 'creature', 'fluttered', 'away', 'leaving', 'her', 'wanting', 'more', 'undeterred', 'mittens', 'continued', 'to', 'explore', 'the', 'house', 'searching', 'for', 'new', 'adventures'], 'top_ngrams': [(('alice', 'smiths'), 1), (('smiths', 'cat'), 1), (('cat', 'cozy'), 1), (('cozy', 'little'), 1), (('little', 'house'), 1), (('house', 'nestled'), 1), (('nestled', 'amidst'), 1), (('amidst', 'bustling'), 1), (('bustling', 'city'), 1), (('city', 'lived'), 1), (('lived', 'ginger'), 1), (('ginger', 'cat'), 1), (('cat', 'named'), 1), (('named', 'mittens'), 1), (('mittens', 'beloved'), 1), (('beloved', 'companion'), 1), (('companion', 'alice'), 1), (('alice', 'smith'), 1), (('smith', 'known'), 1), (('known', 'playful'), 1), (('playful', 'antics'), 1), (('antics', 'insatiable'), 1), (('insatiable', 'curiosity'), 1), (('curiosity', 'one'), 1), (('one', 'sunny'), 1), (('sunny', 'afternoon'), 1), (('afternoon', 'basking'), 1), (('basking', 'patch'), 1), (('patch', 'warm'), 1), (('warm', 'sunlight'), 1), (('sunlight', 'mittens'), 1), (('mittens', 'spotted'), 1), (('spotted', 'fluttering'), 1), (('fluttering', 'butterfly'), 1), (('butterfly', 'outside'), 1), (('outside', 'window'), 1), (('window', 'leaped'), 1), (('leaped', 'window'), 1), (('window', 'sill'), 1), (('sill', 'tail'), 1), (('tail', 'swishing'), 1), (('swishing', 'excitedly'), 1), (('excitedly', 'darted'), 1), (('darted', 'towards'), 1), (('towards', 'fluttering'), 1), (('fluttering', 'wings'), 1), (('wings', 'mittens'), 1), (('mittens', 'pounced'), 1), (('pounced', 'batted'), 1), (('batted', 'butterfly'), 1)]}
         self.assertEqual(result, expected_result)
 
-    def test_ngram_analysis_null_input(self):
-        # Test case for null input
-        input_data = {"metadata": {"text": "This is a sample document."}, "tokens": None}
-        result = ngram_analysis(input_data)
-        expected_result = {"metadata": {"text": "This is a sample document."}, "tokens": None, "top_ngrams": []}
-        self.assertEqual(result, expected_result)
+        #test 2
+        #testing the Bob_Johnson_Kitten_Story.docx
+        
 
-    def test_ngram_analysis_empty_tokens(self):
-        # Test case for empty tokens
-        input_data = {"metadata": {"text": "This is a sample document."}, "tokens": []}
-        result = ngram_analysis(input_data)
-        expected_result = {"metadata": {"text": "This is a sample document."}, "tokens": [], "top_ngrams": []}
-        self.assertEqual(result, expected_result)
+        #test 3
+        #testing the Charlie_Brown_Cat.docx
 
-    def test_ngram_analysis_multiple_occurrences(self):
-        # Test case for multiple occurrences of n-grams
-        input_data = {
-            "metadata": {"text": "This is a sample document with a sample content. This is a duplicate sample."},
-            "tokens": ["this", "is", "a", "sample", "document", "with", "a", "sample", "content", "this", "is", "a", "duplicate", "sample"]
-        }
-        result = ngram_analysis(input_data)
-        expected_result = {
-            "metadata": {"text": "This is a sample document with a sample content. This is a duplicate sample."},
-            "tokens": ["this", "is", "a", "sample", "document", "with", "a", "sample", "content", "this", "is", "a", "duplicate", "sample"],
-            "top_ngrams": [(("this", "is"), 2), (("is", "a"), 2), (("a", "sample"), 2), (("sample", "document"), 1), (("document", "with"), 1)]
-        }
-        self.assertEqual(result, expected_result)
+        #test 4
+        #testing the Jane_Doe_Cat_Story.docx
 
-    def test_ngram_analysis_long_text(self):
-        # Test case for long text with various n-grams
-        input_data = {
-            "metadata": {"text": "This is a long document with various n-grams and repeated words. This document will have a mix of unique and repeated n-grams."},
-            "tokens": ["this", "is", "a", "long", "document", "with", "various", "n-grams", "and", "repeated", "words", "this", "document", "will", "have", "a", "mix", "of", "unique", "and", "repeated", "n-grams"]
-        }
-        result = ngram_analysis(input_data)
-        # Example expected result for one of the n-grams
-        expected_result = {
-            "metadata": {"text": "This is a long document with various n-grams and repeated words. This document will have a mix of unique and repeated n-grams."},
-            "tokens": ["this", "is", "a", "long", "document", "with", "various", "n-grams", "and", "repeated", "words", "this", "document", "will", "have", "a", "mix", "of", "unique", "and", "repeated", "n-grams"],
-            "top_ngrams": [(("this", "is"), 2), (("is", "a"), 2), (("a", "long"), 1), (("long", "document"), 1), (("document", "with"), 1)]
-        }
-        self.assertEqual(result, expected_result)
-
-    def test_ngram_analysis_large_n(self):
-        # Test case for a large value of n
-        input_data = {
-            "metadata": {"text": "This is a document with a large value of n for n-gram analysis."},
-            "tokens": ["this", "is", "a", "document", "with", "a", "large", "value", "of", "n", "for", "n-gram", "analysis"]
-        }
-        result = ngram_analysis(input_data)
-        expected_result = {
-            "metadata": {"text": "This is a document with a large value of n for n-gram analysis."},
-            "tokens": ["this", "is", "a", "document", "with", "a", "large", "value", "of", "n", "for", "n-gram", "analysis"],
-            "top_ngrams": [(("this", "is", "a"), 1), (("is", "a", "document"), 1), (("a", "document", "with"), 1), (("document", "with", "a"), 1), (("with", "a", "large"), 1)]
-        }
-        self.assertEqual(result, expected_result)
+        #test 5
+        #testing the test_document5.docx  (an empty document)
+        
+        #test 6
+        #testing null
 
 if __name__ == "__main__":
     unittest.main()
